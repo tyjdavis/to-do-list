@@ -9,10 +9,7 @@ class App extends Component {
   constructor (){
     super();
     this.state = { //setting the state to be an object
-      todos: [
-        // {task: 'Taste JavaScript', complete: false},
-        // {task: 'Buy a unicorn', complete: false}
-      ]
+      todos: []
     }
   }
 
@@ -26,15 +23,38 @@ class App extends Component {
   }
 
   checkboxToggle(todo) {
-    console.log(todo);
-    todo.complete = !todo.complete;
-    this.forceUpdate();
+    this.setState({
+      todos: this.state.todos.map(current => {
+        if (current === todo) {
+          current.complete = !current.complete
+        }
+        return current;
+      })
+    })
   }
 
-  destroyToggle(index) {
-    this.state.todos.splice(index, 1);
-    this.forceUpdate();
+  // old code for checkboxToggle
+  //
+  // checkboxToggle(todo) {
+  //   console.log(todo);
+  //   todo.complete = !todo.complete;
+  //   this.forceUpdate();
+  // }
+
+
+  destroyToggle(todo) { //use filter
+    this.setState({
+      todos: this.state.todos.filter(current => current !== todo)
+    });
   }
+
+//   old code for destroyToggle
+
+//   destroyToggle(index) {
+//     this.state.todos.splice(index, 1);
+//     this.forceUpdate();
+// }
+
 
   itemCounter() {
     if (this.state.todos.length === 0){
@@ -58,6 +78,7 @@ class App extends Component {
           />
           <Footer
             itemCounter={this.itemCounter()}
+            hide={this.state.todos.length === 0}
           />
         </section>
     );

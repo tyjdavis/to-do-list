@@ -4,7 +4,7 @@ class Footer extends Component {
 
   render(){
     return (
-      <footer className="footer">
+      <footer className="footer" hidden={this.props.hide}>
         {/*This should be `0 items left` by default*/}
         <span className="todo-count"><strong> {this.props.itemCounter} </strong> item left</span>
         {/*Remove this if you don't implement routing*/}

@@ -14,7 +14,7 @@ class Main extends Component {
                 <div className="view">
                   <input className="toggle" type="checkbox" onClick={this.props.checkboxToggle.bind(this, todo)} checked={todo.complete}/>
                   <label>{todo.task}</label>
-                  <button className="destroy" onClick={this.props.destroyToggle.bind(this, index)}></button>
+                  <button className="destroy" onClick={this.props.destroyToggle.bind(this, todo)}></button>
                 </div>
                 <input className="edit" value={todo.task}/>
               </li>
