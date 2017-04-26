@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 
 class Footer extends Component {
+
   render(){
     return (
       <footer className="footer">
         {/*This should be `0 items left` by default*/}
-        <span className="todo-count"><strong>0</strong> item left</span>
+        <span className="todo-count"><strong> {this.props.itemCounter} </strong> item left</span>
         {/*Remove this if you don't implement routing*/}
         <ul className="filters">
           <li>

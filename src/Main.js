@@ -12,7 +12,7 @@ class Main extends Component {
             return (
               <li className={todo.complete ? "completed" : null} key={index}>
                 <div className="view">
-                  <input className="toggle" type="checkbox" onClick={this.props.checkboxToggle.bind(this, todo)}/>
+                  <input className="toggle" type="checkbox" onClick={this.props.checkboxToggle.bind(this, todo)} checked={todo.complete}/>
                   <label>{todo.task}</label>
                   <button className="destroy" onClick={this.props.destroyToggle.bind(this, index)}></button>
                 </div>

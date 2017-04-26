@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Header extends Component {
 
   handleKeyPress(event) {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' && event.target.value) {
       console.log(event.target.value)
       this.props.sendWordstoApp(event.target.value)
       event.target.value = '';

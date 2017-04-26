@@ -17,6 +17,14 @@ class App extends Component {
   }
 
 
+  addTodo (words){
+    let newTodo = { task: words, complete: false }
+    let newTodosArray = this.state.todos.concat(newTodo)
+    this.setState({
+      todos: newTodosArray
+    })
+  }
+
   checkboxToggle(todo) {
     console.log(todo);
     todo.complete = !todo.complete;
@@ -28,13 +36,14 @@ class App extends Component {
     this.forceUpdate();
   }
 
-  addTodo (words){
-    let newTodo = { task: words, complete: false }
-    let newTodosArray = this.state.todos.concat(newTodo)
-    this.setState({
-      todos: newTodosArray
-    })
+  itemCounter() {
+    if (this.state.todos.length === 0){
+      return 0;
+    } else {
+      return this.state.todos.length;
+    }
   }
+
 
   render() {
     return (
@@ -47,7 +56,9 @@ class App extends Component {
             checkboxToggle={this.checkboxToggle.bind(this)}
             destroyToggle={this.destroyToggle.bind(this)}
           />
-          <Footer />
+          <Footer
+            itemCounter={this.itemCounter()}
+          />
         </section>
     );
   }
