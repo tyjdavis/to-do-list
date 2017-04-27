@@ -10,9 +10,9 @@ class Main extends Component {
         <ul className="todo-list">
           {this.props.todos.map((todo, index) => {
             return (
-              <li className={todo.complete ? "completed" : null} key={index}>
+              <li className={todo.complete ? "completed" : null} key={index}> {/*I don't understand this line*/}
                 <div className="view">
-                  <input className="toggle" type="checkbox" onClick={this.props.checkboxToggle.bind(this, todo)} checked={todo.complete}/>
+                  <input className="toggle" type="checkbox" onClick={this.props.completedToggle.bind(this, todo)} checked={todo.complete}/>
                   <label>{todo.task}</label>
                   <button className="destroy" onClick={this.props.destroyToggle.bind(this, todo)}></button>
                 </div>

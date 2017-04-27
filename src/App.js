@@ -8,7 +8,7 @@ class App extends Component {
 
   constructor (){
     super();
-    this.state = { //setting the state to be an object
+    this.state = {
       todos: []
     }
   }
@@ -22,38 +22,26 @@ class App extends Component {
     })
   }
 
-  checkboxToggle(todo) {
+
+  completedToggle(todo) {
+    let newcheckboxArray = this.state.todos.map(current => {
+      if (current === todo) {
+        current.complete = !current.complete
+      }
+      return current;
+    })
     this.setState({
-      todos: this.state.todos.map(current => {
-        if (current === todo) {
-          current.complete = !current.complete
-        }
-        return current;
-      })
+      todos: newcheckboxArray
     })
   }
 
-  // old code for checkboxToggle
-  //
-  // checkboxToggle(todo) {
-  //   console.log(todo);
-  //   todo.complete = !todo.complete;
-  //   this.forceUpdate();
-  // }
 
-
-  destroyToggle(todo) { //use filter
+  destroyToggle(todo) {
+    let newToggleArray = this.state.todos.filter(current => current !== todo)
     this.setState({
-      todos: this.state.todos.filter(current => current !== todo)
+      todos: newToggleArray
     });
   }
-
-//   old code for destroyToggle
-
-//   destroyToggle(index) {
-//     this.state.todos.splice(index, 1);
-//     this.forceUpdate();
-// }
 
 
   itemCounter() {
@@ -73,7 +61,7 @@ class App extends Component {
           />
           <Main
             todos={this.state.todos}
-            checkboxToggle={this.checkboxToggle.bind(this)}
+            completedToggle={this.completedToggle.bind(this)}
             destroyToggle={this.destroyToggle.bind(this)}
           />
           <Footer
