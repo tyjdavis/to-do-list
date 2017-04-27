@@ -85,14 +85,14 @@ class App extends Component {
           <Header
             addTodo={this.addTodo.bind(this)}
           />
-          <Main
+          <Route path="/:find?" render={(defaultProps) => <Main
             todos={this.state.todos}
             completedToggle={this.completedToggle.bind(this)}
             destroyToggle={this.destroyToggle.bind(this)}
             checkAll={this.checkAll.bind(this)}
             itemCounter={this.itemCounter()}
             updateTodo={this.updateTodo.bind(this)}
-
+            {...defaultProps} />}
           />
           <Footer
             itemCounter={this.itemCounter()}

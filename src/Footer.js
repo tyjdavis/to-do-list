@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
 
 class Footer extends Component {
 
@@ -10,13 +15,13 @@ class Footer extends Component {
         {/*Remove this if you don't implement routing*/}
         <ul className="filters">
           <li>
-            <a className="selected" href="#/">All</a>
+            <Link className="selected" to="/">All</Link>
           </li>
           <li>
-            <a href="#/active">Active</a>
+            <Link to="/active">Active</Link>
           </li>
           <li>
-            <a href="#/completed">Completed</a>
+            <Link to="/completed">Completed</Link>
           </li>
         </ul>
         {/*Hidden if no completed items are left ↓ */}

@@ -39,6 +39,18 @@ class Main extends Component {
     })
   }
 
+  todos(){
+    if (this.props.match.params.find === 'active') {
+      return this.props.todos.filter(todo => !todo.complete)
+    } else if (this.props.match.params.find === 'completed') {
+      return this.props.todos.filter(todo => todo.complete)
+    } else{
+      return this.props.todos
+    }
+  }
+
+
+
   render() {
     const someIncomplete = this.props.itemCounter === 0 ? false : true
     return (
@@ -46,7 +58,7 @@ class Main extends Component {
         <input className="toggle-all" type="checkbox" checked={this.props.itemCounter===0}/>
         <label htmlFor="toggle-all" onClick={this.toggleAll.bind(this, someIncomplete)}>Mark all as complete</label>
         <ul className="todo-list">
-          {this.props.todos.map((todo, index) => {
+          {this.todos().map((todo, index) => {
             return (
               <li className={this.classNameFor(todo)} key={index}> {/*setting the className to "completed" if it's true.*/}
                 <div className="view" onDoubleClick={this.setEditable.bind(this, todo)}>
