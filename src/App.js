@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -44,31 +49,57 @@ class App extends Component {
   }
 
 
-  itemCounter() {
-    if (this.state.todos.length === 0){
-      return 0;
-    } else {
-      return this.state.todos.length;
-    }
+  itemCounter(){
+    return this.state.todos.filter(remaining => !remaining.complete).length
+  }
+
+
+
+  checkAll(toggleState) {
+    let newTodos = this.state.todos.map(checked =>{
+      checked.complete = toggleState;
+      return(checked);
+    })
+    this.setState({
+      todos: newTodos
+    })
+  }
+
+
+  updateTodo (todoToChange, task) {
+    let updatedTodos = this.state.todos.map(todo => {
+      if (todo === todoToChange) {
+        todo.task = task
+      }
+      return todo
+    })
+    this.setState({
+      todos: updatedTodos})
   }
 
 
   render() {
     return (
+      <Router>
         <section className="todoapp">
           <Header
-            sendWordstoApp={this.addTodo.bind(this)}
+            addTodo={this.addTodo.bind(this)}
           />
           <Main
             todos={this.state.todos}
             completedToggle={this.completedToggle.bind(this)}
             destroyToggle={this.destroyToggle.bind(this)}
+            checkAll={this.checkAll.bind(this)}
+            itemCounter={this.itemCounter()}
+            updateTodo={this.updateTodo.bind(this)}
+
           />
           <Footer
             itemCounter={this.itemCounter()}
             hide={this.state.todos.length === 0}
           />
         </section>
+      </Router>
     );
   }
 }
